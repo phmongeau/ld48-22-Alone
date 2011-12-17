@@ -25,7 +25,7 @@ package
 			if(FlxG.mouse.justPressed())
 			{
 				FlxG.mouse.hide();
-				FlxG.switchState(new PlayState());
+				FlxG.switchState(new IntroState());
 			}
 		}
 	}

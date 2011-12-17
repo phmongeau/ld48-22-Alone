@@ -27,6 +27,10 @@ package
 				FlxG.mouse.hide();
 				FlxG.switchState(new IntroState());
 			}
+			else if(FlxG.keys.justPressed("SPACE"))
+			{
+				FlxG.switchState(new IntroState());
+			}
 		}
 	}
 }

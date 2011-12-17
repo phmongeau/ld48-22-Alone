@@ -40,7 +40,7 @@ package
 				FlxG.flash(0xffffffff, 0.5);
 			}
 
-			if(i > messages.length)
+			if(i >= messages.length)
 			{
 				FlxG.switchState(new MenuState());
 			}

@@ -8,20 +8,14 @@ package
 
 		private	var lateralSpeed:Number = 600;
 		private var bullets:FlxGroup;
-		public function PlayerShip( X:Number, Y:Number):void
+		public function PlayerShip(X:Number, Y:Number, Bullets:FlxGroup):void
 		{
 			super(X,Y);
 			loadGraphic(ImgShip);
 			maxVelocity.x = 800;
 
-			bullets = new FlxGroup();
-			FlxG.state.add(bullets);
+			bullets = Bullets;
 
-			for (var i:int = 0; i < 1; i++) {
-				var b:Bullet = new Bullet(0,0);
-				b.kill();
-				bullets.add(b);
-			}
 		}
 
 		override public function update():void

@@ -4,7 +4,7 @@ package
 
 	public class Bullet extends FlxSprite
 	{
-		public function Bullet( X:Number, Y:Number):void
+		public function Bullet( X:Number = 0, Y:Number = 0):void
 		{
 			super(X,Y);
 			makeGraphic(4, 16, 0xffffffff);

@@ -49,6 +49,8 @@ package
 
 			msgBox = new FlxText(0, FlxG.height - 30, FlxG.width);
 			msgBox.alignment = "center";
+			msgBox.text = "Incoming Message; press X"
+			msgBox.visible = false;
 			add(msgBox);
 		}
 
@@ -60,11 +62,16 @@ package
 
 			if(killCount >= 15)
 			{
-				msgBox.text = "Incomming Message; press X"
+				msgBox.visible = true;
+
+				if(FlxG.keys.X)
+				{
+					FlxG.switchState(new MessageState);
+				}
 			}
 		}
 
-		private function onSmallOverlap(b:FlxSprite, e:FlxSprite)
+		private function onSmallOverlap(b:FlxSprite, e:FlxSprite):void
 		{
 			b.kill();
 			e.kill();

@@ -1,0 +1,21 @@
+package
+{
+	import org.flixel.*
+
+	public class Bullet extends FlxSprite
+	{
+		public function Bullet( X:Number, Y:Number):void
+		{
+			super(X,Y);
+			makeGraphic(4, 16, 0xffffffff);
+		}
+
+		override public function update():void
+		{
+			super.update();
+			if(y < 0 || y > FlxG.height)
+				kill();
+		}
+	}
+}
+

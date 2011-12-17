@@ -42,7 +42,7 @@ package
 
 			if(i >= messages.length)
 			{
-				FlxG.switchState(new MenuState());
+				FlxG.switchState(new SpaceState());
 			}
 		}
 	}

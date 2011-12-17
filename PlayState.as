@@ -11,7 +11,7 @@ package
 
 		private var smallShips:FlxGroup;
 		
-		private var killCount:int = 0;
+		private var killCount:int = 50;
 
 		private var msgBox:FlxText;
 
@@ -51,6 +51,7 @@ package
 			msgBox.alignment = "center";
 			msgBox.text = "Incoming Message; press X"
 			msgBox.visible = false;
+			msgBox.size = 8;
 			add(msgBox);
 		}
 
@@ -62,7 +63,11 @@ package
 
 			if(killCount >= 15)
 			{
-				msgBox.visible = true;
+				if(!msgBox.visible)
+				{
+					FlxG.flash(0xffffffff, 0.8);
+					msgBox.visible = true;
+				}
 
 				if(FlxG.keys.X)
 				{

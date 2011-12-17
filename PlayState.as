@@ -11,12 +11,13 @@ package
 
 		private var smallShips:FlxGroup;
 		
-		private var killCount:int = 50;
+		private var killCount:int = 0;
 
 		private var msgBox:FlxText;
 
 		override public function create():void
 		{
+			FlxG.flash(0x00ffffff, 1);
 			// create bullets
 			playerBullets = new FlxGroup();
 			add(playerBullets);
@@ -72,6 +73,14 @@ package
 				if(FlxG.keys.X)
 				{
 					FlxG.switchState(new MessageState);
+				}
+			}
+
+			if (FlxG.debug)
+			{
+				if(FlxG.keys.justPressed('Z'))
+				{
+					FlxG.switchState(new SpaceState())
 				}
 			}
 		}

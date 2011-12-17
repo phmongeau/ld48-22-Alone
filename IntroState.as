@@ -57,7 +57,12 @@ package
 			}
 
 			if (ship.y < -200)
-				FlxG.switchState(new PlayState());
+			{
+				FlxG.fade(0xffffffff, 0.5, function():void
+				{
+					FlxG.switchState(new PlayState());
+				});
+			}
 
 			super.update();
 		}

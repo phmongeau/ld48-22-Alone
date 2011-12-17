@@ -10,6 +10,10 @@ package
 		private var enemyBullets:FlxGroup;
 
 		private var smallShips:FlxGroup;
+		
+		private var killCount:int = 0;
+
+		private var msgBox:FlxText;
 
 		override public function create():void
 		{
@@ -29,7 +33,7 @@ package
 				b.kill();
 				enemyBullets.add(b);
 			}
-			player = new PlayerShip(320, FlxG.height - 50, playerBullets);
+			player = new PlayerShip(320, FlxG.height - 70, playerBullets);
 			add(player);
 
 			smallShips = new FlxGroup();
@@ -42,6 +46,29 @@ package
 					smallShips.add(new SmallEnemy(i*50 + offset, n * 20 + offset, enemyBullets));
 				}
 			}
+
+			msgBox = new FlxText(0, FlxG.height - 30, FlxG.width);
+			msgBox.alignment = "center";
+			add(msgBox);
+		}
+
+		override public function update():void
+		{
+			super.update();
+
+			FlxG.overlap(playerBullets, smallShips, onSmallOverlap)
+
+			if(killCount >= 15)
+			{
+				msgBox.text = "Incomming Message; press X"
+			}
+		}
+
+		private function onSmallOverlap(b:FlxSprite, e:FlxSprite)
+		{
+			b.kill();
+			e.kill();
+			killCount++;
 		}
 	}
 }

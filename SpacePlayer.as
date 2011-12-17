@@ -12,17 +12,13 @@ package
 
 		public function SpacePlayer(X:Number, Y:Number)
 		{
-			FlxG.log("inside");
 			super(X,Y);
 			loadGraphic(ImgShip);
-			FlxG.log("graphic loaded");
+
 			speed = 0;
 			maxSpeed = 90;
 			maxAngular = 200;
 			angularDrag = 150;
-			FlxG.log("var initialized");
-
-			FlxG.watch(this, "angle", "playerAngle");
 
 		}
 

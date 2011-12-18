@@ -13,7 +13,7 @@ package
 		{
 			//stars
 			
-			add(stars(1000, 3));
+			//add(stars(1000, 1));
 
 			FlxG.log("hello");
 			// create bullets
@@ -47,17 +47,21 @@ package
 
 			var test:FlockShip = new FlockShip(100,100,player);
 			test.flock = flock;
-			test.velocity.x = 100;
-			test.velocity.y = 50;
+			//test.velocity.x = 100;
+			//test.velocity.y = 50;
 			flock.add(test);
 
-			for (i = 0; i <= 20; ++i)
+			for (i = 0; i <= 50; ++i)
 			{
-				var f:FlockShip = new FlockShip(Math.random() * 200 - 100, Math.random() * 200 - 100, test);
+				//var f:FlockShip = new FlockShip(Math.random() * 200 - 100, Math.random() * 200 - 100, test);
+				var f:FlockShip = new FlockShip(Math.random() * 640, Math.random() * 480, test);
 				f.target = flock.getRandom() as FlxSprite;
 				f.flock = flock;
 				flock.add(f);
 			}
+
+			var obstacle:FlxSprite = new FlxSprite(620, 460);
+			flock.add(obstacle);
 
 			FlxG.camera.follow(player);
 

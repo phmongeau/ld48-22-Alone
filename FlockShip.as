@@ -37,9 +37,15 @@ package
 			var v1:FlxPoint = calculateV1();
 			var v2:FlxPoint = calculateV2();
 			var v3:FlxPoint = calculateV3();
+			var v4:FlxPoint = new FlxPoint(Math.random() * 10, Math.random() * 10);
 			
+			//velocity.x += (v1.x + v2.x + v3.x + v4.x * 0.1) * 0.1;
+			//velocity.y += (v1.y + v2.y + v3.y + v4.x * 0.1) * 0.1;
 			velocity.x += (v1.x + v2.x + v3.x) * 0.1;
 			velocity.y += (v1.y + v2.y + v3.y) * 0.1;
+
+			angle = FlxU.getAngle(new FlxPoint(x,y), velocity);
+
 			//---------------------------------------
 
 			//if(speed > maxSpeed) speed = maxSpeed;
@@ -68,7 +74,7 @@ package
 			var count:uint;
 			for each(var s:FlxSprite in flock.members)
 			{
-				if(s != this)
+				if(s != this && dist(s.x, s.y) < 100)
 				{
 					average.x += s.x;
 					average.y += s.y;
@@ -103,7 +109,7 @@ package
 			var count:uint;
 			for each(var s:FlxSprite in flock.members)
 			{
-				if(s != this)
+				if(s != this && dist(s.x, s.y) < 100)
 				{
 					vel.x += s.velocity.x;
 					vel.y += s.velocity.y;

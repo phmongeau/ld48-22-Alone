@@ -3,6 +3,8 @@ package
 	import org.flixel.*;
 	public class SpaceState extends FlxState
 	{
+		[Embed (source="/data/planet.png")] private var ImgPlanet:Class;
+
 		private var player:SpacePlayer
 
 		private var playerBullets:FlxGroup;
@@ -10,11 +12,17 @@ package
 		private var flock:FlxGroup;
 		private var stars:FlxGroup;
 
+		private var planet:FlxSprite;
+
 		override public function create():void
 		{
 			//stars
 			stars = makeStars(300, 1);
 			add(stars);
+
+			planet = new FlxSprite(7000, 7000);
+			planet.loadGraphic(ImgPlanet);
+			add(planet);
 
 			// create bullets
 			playerBullets = new FlxGroup();
@@ -60,7 +68,11 @@ package
 				flock.add(f);
 			}
 
+
 			FlxG.camera.follow(player);
+
+			FlxG.watch(player, "x", "playerX");
+			FlxG.watch(player, "y", "playerY");
 
 		}
 

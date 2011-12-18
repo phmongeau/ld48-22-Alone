@@ -8,14 +8,14 @@ package
 		private var playerBullets:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		private var flock:FlxGroup;
+		private var stars:FlxGroup;
 
 		override public function create():void
 		{
 			//stars
-			
-			//add(stars(1000, 1));
+			stars = makeStars(300, 1);
+			add(stars);
 
-			FlxG.log("hello");
 			// create bullets
 			playerBullets = new FlxGroup();
 			add(playerBullets);
@@ -43,7 +43,7 @@ package
 			flock = new FlxGroup();
 			add(flock);
 
-			flock.add(player);
+			//flock.add(player);
 
 			var test:FlockShip = new FlockShip(100,100,player);
 			test.flock = flock;
@@ -60,21 +60,25 @@ package
 				flock.add(f);
 			}
 
-			var obstacle:FlxSprite = new FlxSprite(620, 460);
-			flock.add(obstacle);
-
 			FlxG.camera.follow(player);
-
 
 		}
 
 		override public function update():void
 		{
-			//FlxG.collide(flock);
+			//Stars
+			for each(var s:FlxSprite in stars.members)
+			{
+				if(s.x < player.x - FlxG.width/2) s.x = player.x + FlxG.width/2;
+				if(s.x > player.x + FlxG.width/2) s.x = player.x - FlxG.width/2;
+				if(s.y < player.y - FlxG.height/2) s.y = player.y + FlxG.height/2;
+				if(s.y > player.y + FlxG.height/2) s.y = player.y - FlxG.height/2;
+			}
+
 			super.update();
 		}
 
-		private function stars(n:int, s:Number, color:uint=0xffffffff):FlxGroup
+		private function makeStars(n:int, s:Number, color:uint=0xffffffff):FlxGroup
 		{
 			var group:FlxGroup = new FlxGroup();
 			//group.scrollFactor = new FlxPoint(s,s);
@@ -82,7 +86,8 @@ package
 			var i:int;
 			for (i = 0; i <= n; ++i)
 			{
-				var sp:FlxSprite = new FlxSprite(Math.random() * s * 1000, Math.random() * s * 1000)
+				//var sp:FlxSprite = new FlxSprite(Math.random() * s * 1000, Math.random() * s * 1000)
+				var sp:FlxSprite = new FlxSprite(Math.random() * FlxG.width, Math.random() * FlxG.height)
 				sp.makeGraphic(1, 1, color);
 				sp.scrollFactor = new FlxPoint(s,s);
 				group.add(sp);

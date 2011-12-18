@@ -39,10 +39,10 @@ package
 			var v3:FlxPoint = calculateV3();
 			var v4:FlxPoint = new FlxPoint(Math.random() * 10, Math.random() * 10);
 			
-			//velocity.x += (v1.x + v2.x + v3.x + v4.x * 0.1) * 0.1;
-			//velocity.y += (v1.y + v2.y + v3.y + v4.x * 0.1) * 0.1;
-			velocity.x += (v1.x + v2.x + v3.x) * 0.1;
-			velocity.y += (v1.y + v2.y + v3.y) * 0.1;
+			velocity.x += (v1.x + v2.x + v3.x + v4.x * 0.1) * 0.1;
+			velocity.y += (v1.y + v2.y + v3.y + v4.x * 0.1) * 0.1;
+			//velocity.x += (v1.x + v2.x + v3.x) * 0.1;
+			//velocity.y += (v1.y + v2.y + v3.y) * 0.1;
 
 			angle = FlxU.getAngle(new FlxPoint(x,y), velocity);
 

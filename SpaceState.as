@@ -67,6 +67,18 @@ package
 				f.flock = flock;
 				flock.add(f);
 			}
+			//var offset:int = 60;
+			//for (var n:int; n <= 5; n++)
+			//{
+				//for (i = 0; i <= 10; i++)
+				//{
+					////smallShips.add(new SmallEnemy(i*50 + offset, n * 20 + offset, enemyBullets));
+					//var f:FlockShip = new FlockShip(i * 50 + offset, n * 20 + offset, test);
+					//f.target = flock.getRandom() as FlxSprite;
+					//f.flock = flock;
+					//flock.add(f);
+				//}
+			//}
 
 
 			FlxG.camera.follow(player);
@@ -78,6 +90,16 @@ package
 
 		override public function update():void
 		{
+			if(player.overlaps(planet))
+			{
+				FlxG.fade(0xffffffff, 1, onWin);
+			}
+			
+			if(dist(player, flock.getRandom() as FlxSprite) > 640 * 4)
+			{
+				FlxG.fade(0xffffffff, 1, onLost);
+			}
+
 			//Stars
 			for each(var s:FlxSprite in stars.members)
 			{
@@ -105,6 +127,23 @@ package
 				group.add(sp);
 			}
 			return group;
+		}
+		
+		private function onWin():void
+		{
+			FlxG.switchState(new MenuState());
+		}
+		private function onLost():void
+		{
+			FlxG.switchState(new AloneState("You got lost\n you are now alone."));
+		}
+
+		private function dist(s1:FlxSprite, s2:FlxSprite):Number
+		{
+			var deltaX:Number = Math.abs(s1.x - s2.x);
+			var deltaY:Number = Math.abs(s1.y - s2.y);
+
+			return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 		}
 	}
 }

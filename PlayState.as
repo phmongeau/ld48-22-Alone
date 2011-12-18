@@ -11,7 +11,7 @@ package
 
 		private var smallShips:FlxGroup;
 		
-		private var killCount:int = 0;
+		public var killCount:int = 0;
 
 		private var msgBox:FlxText;
 
@@ -48,6 +48,9 @@ package
 				}
 			}
 
+			FlxG.watch(this, "killCount", "killCount");
+
+
 			msgBox = new FlxText(0, FlxG.height - 30, FlxG.width);
 			msgBox.alignment = "center";
 			msgBox.text = "Incoming Message; press X"
@@ -74,6 +77,12 @@ package
 				{
 					FlxG.switchState(new MessageState);
 				}
+			}
+
+
+			if(killCount >= 66)
+			{
+				FlxG.switchState(new AloneState());
 			}
 
 			if (FlxG.debug)

@@ -2,10 +2,10 @@ package
 {
 	import org.flixel.*;
 
-	public class AloneState extends FlxState
+	public class WinState extends FlxState
 	{
 		private var msg:String;
-		public function AloneState(msg:String = "You are now Alone")
+		public function WinState(msg:String = "Looks like you Won")
 		{
 			this.msg = msg;
 		}

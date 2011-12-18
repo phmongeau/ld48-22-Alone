@@ -7,7 +7,7 @@ package
 		public function Bullet( X:Number = 0, Y:Number = 0):void
 		{
 			super(X,Y);
-			makeGraphic(4, 16, 0xffffffff);
+			makeGraphic(2, 8, 0xffffffff);
 		}
 
 		override public function update():void

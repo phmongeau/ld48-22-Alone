@@ -17,6 +17,7 @@ package
 
 		override public function create():void
 		{
+			FlxG.worldBounds = new FlxRect(0,0, FlxG.width, FlxG.height);
 			FlxG.flash(0x00ffffff, 1);
 			// create bullets
 			playerBullets = new FlxGroup();

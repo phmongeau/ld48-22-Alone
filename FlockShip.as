@@ -41,20 +41,8 @@ package
 			
 			velocity.x += (v1.x + v2.x + v3.x + v4.x * 0.1) * 0.1;
 			velocity.y += (v1.y + v2.y + v3.y + v4.x * 0.1) * 0.1;
-			//velocity.x += (v1.x + v2.x + v3.x) * 0.1;
-			//velocity.y += (v1.y + v2.y + v3.y) * 0.1;
 
 			angle = FlxU.getAngle(new FlxPoint(x,y), velocity);
-
-			//---------------------------------------
-
-			//if(speed > maxSpeed) speed = maxSpeed;
-			//else if(speed < (-1 * maxSpeed)) speed = -1 * maxSpeed;
-
-			//radAngle = (angle + 180) * (Math.PI / 180);
-
-			//velocity.x = speed * Math.cos(radAngle);
-			//velocity.y = speed * Math.sin(radAngle);
 
 			super.update()
 		}

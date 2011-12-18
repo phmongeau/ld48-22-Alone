@@ -17,6 +17,9 @@ package
 			messages.push("We know it's a shock to realize\n you are not alone,...");
 			messages.push("But it's not a reason to kill us!");
 			messages.push("Silly humans!");
+			messages.push("Now, if you'd like to follow us,");
+			messages.push("We will bring you to our planet");
+			messages.push("And you won't be all alone anymore");
 			msg = new FlxText(0, FlxG.height/2, FlxG.width);
 			msg.alignment = "center";
 			msg.size = 16;

@@ -35,7 +35,7 @@ package
 
 
 			//player = new SpacePlayer((FlxG.width - player.width) / 2, (FlxG.height - player.height) /2);
-			player = new SpacePlayer(30,30);
+			player = new SpacePlayer(0,0);
 			player.x = (FlxG.width - player.width ) /2
 			player.y = (FlxG.height + player.height ) /2
 			add(player);
@@ -43,7 +43,12 @@ package
 			flock = new FlxGroup();
 			add(flock);
 
+			flock.add(player);
+
 			var test:FlockShip = new FlockShip(100,100,player);
+			test.flock = flock;
+			test.velocity.x = 100;
+			test.velocity.y = 50;
 			flock.add(test);
 
 			for (i = 0; i <= 20; ++i)
@@ -61,7 +66,7 @@ package
 
 		override public function update():void
 		{
-			FlxG.collide(flock);
+			//FlxG.collide(flock);
 			super.update();
 		}
 

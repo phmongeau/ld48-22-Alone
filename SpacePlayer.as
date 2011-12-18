@@ -16,7 +16,7 @@ package
 			loadGraphic(ImgShip);
 
 			speed = 0;
-			maxSpeed = 90;
+			maxSpeed = 200;
 			maxAngular = 200;
 			angularDrag = 150;
 

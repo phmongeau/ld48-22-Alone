@@ -12,6 +12,8 @@ package
 		private var flock:FlxGroup;
 		private var stars:FlxGroup;
 
+		public var emitter:FlxEmitter;
+
 		private var planet:FlxSprite;
 
 		public var killCount:uint;
@@ -21,6 +23,17 @@ package
 			//stars
 			stars = makeStars(300, 1);
 			add(stars);
+
+			//emitter
+			emitter = new FlxEmitter();
+			var i:int;
+			for (i = 0; i < 10; i++)
+			{
+				var particle:FlxParticle = new FlxParticle();
+				particle.makeGraphic(4, 4, 0xFFFFFFFF);
+				emitter.add(particle);
+			}
+			add(emitter);
 
 			planet = new FlxSprite(7000, 7000);
 			planet.loadGraphic(ImgPlanet);
@@ -32,7 +45,6 @@ package
 			enemyBullets = new FlxGroup();
 			add(enemyBullets);
 
-			var i:int;
 			for (i = 0; i <= 50; i++)
 			{
 				var b:Bullet = new Bullet();
@@ -83,6 +95,7 @@ package
 		{
 			FlxG.worldBounds = new FlxRect(player.x - FlxG.width/2, player.y - FlxG.height/2, FlxG.width, FlxG.height);
 			FlxG.overlap(flock, player.bullets, onKill);
+			FlxG.overlap(flock, emitter, onKill);
 			if(player.overlaps(planet))
 			{
 				FlxG.fade(0xffffffff, 1, onWin);
@@ -90,6 +103,7 @@ package
 			
 			if(dist(player, flock.getFirstAlive() as FlxSprite) > 640 * 2)
 			{
+				FlxG.log(dist(player, flock.getFirstAlive() as FlxSprite))
 				FlxG.fade(0xffffffff, 1, onLost);
 			}
 
@@ -129,6 +143,10 @@ package
 
 		private function onKill(a:FlxSprite, b:FlxSprite):void
 		{
+			if(!a.alive || !b.alive) return;
+			emitter.kill();
+			emitter.at(a);
+			emitter.start();
 			a.kill();
 			b.kill();
 			killCount++;
@@ -145,8 +163,13 @@ package
 
 		private function dist(s1:FlxSprite, s2:FlxSprite):Number
 		{
-			FlxG.log(s2.x);
-			if(!s1.x || !s2.x ) return 20000;
+			if(!s1.x || !s2.x )
+			{
+				FlxG.log(s1);
+				FlxG.log(s2.y);
+				FlxG.log(s2.x);
+				return 10;
+			}
 			var deltaX:Number = Math.abs(s1.x - s2.x);
 			var deltaY:Number = Math.abs(s1.y - s2.y);
 

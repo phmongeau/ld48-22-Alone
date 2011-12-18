@@ -37,7 +37,8 @@ package
 			var v1:FlxPoint = calculateV1();
 			var v2:FlxPoint = calculateV2();
 			var v3:FlxPoint = calculateV3();
-			var v4:FlxPoint = new FlxPoint(Math.random() * 10, Math.random() * 10);
+			//var v4:FlxPoint = new FlxPoint(Math.random() * 10, Math.random() * 10);
+			var v4:FlxPoint = new FlxPoint(10,10);
 			
 			velocity.x += (v1.x + v2.x + v3.x + v4.x * 0.1) * 0.1;
 			velocity.y += (v1.y + v2.y + v3.y + v4.x * 0.1) * 0.1;

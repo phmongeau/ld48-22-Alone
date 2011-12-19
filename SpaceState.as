@@ -32,6 +32,7 @@ package
 			{
 				var particle:FlxParticle = new FlxParticle();
 				particle.makeGraphic(4, 4, 0xFFFFFFFF);
+				particle.kill();
 				emitter.add(particle);
 			}
 			add(emitter);

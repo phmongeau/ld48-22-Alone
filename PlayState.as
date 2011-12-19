@@ -19,6 +19,8 @@ package
 
 		private var emitter:FlxEmitter;
 
+		private var chainReaction:Boolean = false;
+
 		override public function create():void
 		{
 			FlxG.worldBounds = new FlxRect(0,0, FlxG.width, FlxG.height);
@@ -81,6 +83,8 @@ package
 			super.update();
 
 			FlxG.overlap(playerBullets, smallShips, onSmallOverlap)
+			if(chainReaction)
+				FlxG.overlap(emitter, smallShips, onSmallOverlap)
 
 			if(killCount >= 10)
 			{
@@ -99,7 +103,7 @@ package
 
 			if(killCount >= 66)
 			{
-				FlxG.switchState(new AloneState("You are now alone\n maybe you shouldn't have kille them all"));
+				FlxG.switchState(new AloneState("You are now alone\n maybe you shouldn't have killed them all"));
 			}
 
 			if (FlxG.debug)
@@ -109,6 +113,9 @@ package
 					FlxG.switchState(new SpaceState())
 				}
 			}
+
+			//Popcorn
+			if(FlxG.keys.justPressed("C")) chainReaction = !chainReaction;
 		}
 
 		private function onSmallOverlap(b:FlxSprite, e:FlxSprite):void

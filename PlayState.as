@@ -99,7 +99,7 @@ package
 
 			if(killCount >= 66)
 			{
-				FlxG.switchState(new AloneState());
+				FlxG.switchState(new AloneState("You are now alone\n maybe you shouldn't have kille them all"));
 			}
 
 			if (FlxG.debug)

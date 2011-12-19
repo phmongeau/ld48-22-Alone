@@ -111,7 +111,7 @@ package
 
 			if(killCount > 43)
 			{
-				FlxG.switchState(new AloneState("And now you are alone\n maybe you shouldn't have kille them all"));
+				FlxG.switchState(new AloneState("And now you are alone\n maybe you shouldn't have killed them all"));
 			}
 
 			//Stars

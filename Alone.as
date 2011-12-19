@@ -9,7 +9,7 @@ package
 		public function Alone()
 		{
 			super(640,480,MenuState,1);
-			FlxG.debug = true;
+			//FlxG.debug = true;
 		}
 	}
 }

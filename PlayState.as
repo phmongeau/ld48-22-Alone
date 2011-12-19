@@ -5,7 +5,6 @@ package
 	//Invader State
 	public class PlayState extends FlxState
 	{
-		[Embed (source="/data/laser.mp3")] private var SndLaser:Class;
 		[Embed (source="/data/explosion.mp3")] private var SndExplosion:Class;
 
 		private var player:PlayerShip;
@@ -18,17 +17,30 @@ package
 
 		private var msgBox:FlxText;
 
+		private var emitter:FlxEmitter;
+
 		override public function create():void
 		{
 			FlxG.worldBounds = new FlxRect(0,0, FlxG.width, FlxG.height);
 			FlxG.flash(0x00ffffff, 1);
+
+			//emitter
+			emitter = new FlxEmitter();
+			var i:int;
+			for (i = 0; i < 10; i++)
+			{
+				var particle:FlxParticle = new FlxParticle();
+				particle.makeGraphic(4, 4, 0xFFFFFFFF);
+				emitter.add(particle);
+			}
+			add(emitter);
+
 			// create bullets
 			playerBullets = new FlxGroup();
 			add(playerBullets);
 			enemyBullets = new FlxGroup();
 			add(enemyBullets);
 
-			var i:int;
 			for (i = 0; i <= 50; i++)
 			{
 				var b:Bullet = new Bullet();
@@ -57,7 +69,7 @@ package
 
 			msgBox = new FlxText(0, FlxG.height - 30, FlxG.width);
 			msgBox.alignment = "center";
-			msgBox.text = "Incoming Message; press X"
+			msgBox.text = "Incoming Message [press X]"
 			msgBox.visible = false;
 			msgBox.size = 8;
 			add(msgBox);
@@ -69,7 +81,7 @@ package
 
 			FlxG.overlap(playerBullets, smallShips, onSmallOverlap)
 
-			if(killCount >= 15)
+			if(killCount >= 10)
 			{
 				if(!msgBox.visible)
 				{
@@ -104,6 +116,9 @@ package
 			e.kill();
 			killCount++;
 			FlxG.play(SndExplosion);
+			emitter.kill();
+			emitter.at(e);
+			emitter.start();
 		}
 	}
 }

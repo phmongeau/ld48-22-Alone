@@ -36,6 +36,17 @@ package
 				velocity.x *= 0.77;
 			}
 
+			if(x < 0)
+			{
+				x = 0;
+				velocity.x = 0;
+			}
+			if(x > FlxG.width - width)
+			{
+				x = FlxG.width - width;
+				velocity.x = 0;
+			}
+
 			//Shoot
 			if(FlxG.keys.justPressed('SPACE'))
 			{

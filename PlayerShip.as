@@ -4,6 +4,7 @@ package
 
 	public class PlayerShip extends FlxSprite
 	{
+		[Embed (source="/data/laser.mp3")] private var SndLaser:Class;
 		[Embed (source="/data/ship.png")] private var ImgShip:Class;
 
 		private	var lateralSpeed:Number = 600;
@@ -54,6 +55,7 @@ package
 			}
 			b.reset(x + width / 2, y);
 			b.velocity.y = -500;
+			FlxG.play(SndLaser);
 		}
 	}
 }

@@ -4,6 +4,7 @@ package
 
 	public class SpacePlayer extends FlxSprite
 	{
+		[Embed (source="/data/laser.mp3")] private var SndLaser:Class;
 		[Embed (source="/data/ship.png")] private var ImgShip:Class;
 
 		private var speed:Number;
@@ -73,6 +74,7 @@ package
 				bullet.velocity.y = velocity.y * 2;
 
 			bullet.angle = angle - 90;
+			FlxG.play(SndLaser);
 		}
 
 		private function createBullets(n:int):FlxGroup

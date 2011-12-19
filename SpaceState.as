@@ -3,6 +3,7 @@ package
 	import org.flixel.*;
 	public class SpaceState extends FlxState
 	{
+		[Embed (source="/data/explosion.mp3")] private var SndExplosion:Class;
 		[Embed (source="/data/planet.png")] private var ImgPlanet:Class;
 
 		private var player:SpacePlayer
@@ -107,7 +108,7 @@ package
 				FlxG.fade(0xffffffff, 1, onLost);
 			}
 
-			if(killCount > 40)
+			if(killCount > 43)
 			{
 				FlxG.switchState(new AloneState("And now you are alone\n maybe you shouldn't have kille them all"));
 			}
@@ -150,6 +151,7 @@ package
 			a.kill();
 			b.kill();
 			killCount++;
+			FlxG.play(SndExplosion);
 		}
 		
 		private function onWin():void
@@ -165,9 +167,8 @@ package
 		{
 			if(!s1.x || !s2.x )
 			{
-				FlxG.log(s1);
-				FlxG.log(s2.y);
-				FlxG.log(s2.x);
+				FlxG.log("killed it");
+				s2.kill();
 				return 10;
 			}
 			var deltaX:Number = Math.abs(s1.x - s2.x);

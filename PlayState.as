@@ -5,6 +5,9 @@ package
 	//Invader State
 	public class PlayState extends FlxState
 	{
+		[Embed (source="/data/laser.mp3")] private var SndLaser:Class;
+		[Embed (source="/data/explosion.mp3")] private var SndExplosion:Class;
+
 		private var player:PlayerShip;
 		private var playerBullets:FlxGroup;
 		private var enemyBullets:FlxGroup;
@@ -100,6 +103,7 @@ package
 			b.kill();
 			e.kill();
 			killCount++;
+			FlxG.play(SndExplosion);
 		}
 	}
 }
